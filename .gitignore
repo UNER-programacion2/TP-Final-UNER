@@ -1,0 +1,40 @@
+# Archivos de entornos virtuales
+env/
+venv/
+.venv/
+ENV/
+.ENV/
+
+# Archivos de configuración del entorno (variables de entorno)
+*.env
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Archivos de logs
+*.log
+
+# Base de datos local (por ejemplo, SQLite)
+*.sqlite3
+*.db
+
+# Archivos de cobertura de pruebas
+htmlcov/
+.tox/
+coverage.*
+.cache
+
+# Configuración de Flask (opcional)
+instance/
+config.py
+
+# Archivos de dependencias
+*.egg-info/
+.eggs/
+
+# Archivos específicos del sistema operativo (macOS/Windows)
+.DS_Store
+Thumbs.db
