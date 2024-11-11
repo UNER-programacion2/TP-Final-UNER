@@ -57,5 +57,7 @@ class Vinoteca:
     def __parsearArchivoDeDatos():
         pass  # completar
 
-    def __convertirJsonAListas(lista):
-        pass  # completar
+    # def __convertirJsonAListas(lista):
+    #     for bodega in lista["bodegas"]:
+    #         Vinoteca.__bodegas.append(Bodega(bodega[id]))
+
