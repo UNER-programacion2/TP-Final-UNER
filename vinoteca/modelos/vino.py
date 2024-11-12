@@ -1,12 +1,45 @@
 import json
-from entidadVineria import EntidadVineria
+# from entidadVineria import EntidadVineria
+# from vinoteca import Vinoteca
+from .entidadVineria import EntidadVineria
+from .vinoteca import Vinoteca
+
+
 
 class Vino(EntidadVineria):
+    
+    def __init__(self,id, nombre, bodega: str, cepas: list[str], partidas: list[int]):
+        super().__init__(id,nombre)
+        self.__bodega = bodega
+        self.__cepas = cepas
+        self.__partidas = partidas
+    
+    def establecerBodega(self):
+        self.__bodega
+    
+    def establecerCepas(self):
+        self.__cepas
 
-    def __init__(self,id, nombre, bodega: str, cepas: str, partidas: int):
-        super().__init__()
+    def establecerPartida(self):
+        self.__partidas 
 
+    #<<CONSULTAS>>
+    def obtenerBodega(self):
+        bodega = Vinoteca.buscarBodega(self.__bodega)
+        return bodega
+    
+    def obtenerCepas(self):
+     cepas_objetos=[]
+     for nom_cepa in self.__cepas:
+        cepa = Vinoteca.buscarCepa(nom_cepa)
+        if cepa:
+          cepas_objetos.append(cepa)
+        else:
+          print(f"cepa no encontrada: {nom_cepa} ")
+     return cepas_objetos
 
+    def obtenerPartidas(self):
+        return self._partidas
 
     def __repr__(self):
         return json.dumps({"nombre": self.obtenerNombre()})
@@ -33,3 +66,5 @@ class Vino(EntidadVineria):
         cepas = self.obtenerCepas()
         cepasMapa = map(lambda a: a.obtenerNombre(), cepas)
         return list(cepasMapa)
+        
+    

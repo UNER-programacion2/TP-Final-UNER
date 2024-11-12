@@ -1,8 +1,7 @@
 import json
-from entidadVineria import EntidadVineria 
-from vinoteca import Vinoteca
+from modelos.entidadVineria import EntidadVineria 
+#from vinoteca import Vinoteca
 
-#a. Utilizar el archivo bodega.py
 #b. La consulta obtenerVinos debe hacer uso del servicio obtenerVinos de
  #la clase Vinoteca para recuperar todos los vinos contenidos en el archivo
  #json. Sobre dicha lista se debe iterar hasta encontrar los vinos que
@@ -11,16 +10,14 @@ from vinoteca import Vinoteca
  #anterior para intentar encontrar aquellos vinos que pertenecen a la
  #bodega, recuperando únicamente las cepas en los que se ofrecen estos
 
-
-
 class Bodega(EntidadVineria):
     
     def __init__(self, id, nombre):
         super().__init__(self, id, nombre)
-    #<<Comandos>>
 
-    #<<Consultas>>
+    #<<Consultas>>           Plantear el uso de GET Y SET
     def obternerVinos(self):
+        from vinoteca import Vinoteca 
         
         vinosDeLaBodega = []
         vinos = Vinoteca.obtenerVinos()
@@ -35,10 +32,10 @@ class Bodega(EntidadVineria):
         #bodega, recuperando únicamente las cepas en los que se ofrecen estos
 
     def obtenerCepas(self):
-        vinosBodega = self.obtenerVinos()
+        vinosDeLaBodega = self.obtenerVinos()
         cepas = []
         
-        for vino in vinosBodega:
+        for vino in vinosDeLaBodega:
             for cepa in vino.cepas:  
                 if cepa not in cepas:  
                     cepas.append(cepa)
