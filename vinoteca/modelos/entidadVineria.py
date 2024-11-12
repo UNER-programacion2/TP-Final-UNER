@@ -32,7 +32,7 @@ class EntidadVineria(ABC):
     def __eq__(self, other):
         if not isinstance(other, EntidadVineria):
             return False
-        return self.id == other.id
+        return self._id == other._id
 
 
 

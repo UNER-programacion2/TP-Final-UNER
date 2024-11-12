@@ -1,7 +1,8 @@
 import json
-#from modelos.entidadVineria import EntidadVineria
+from modelos.entidadVineria import EntidadVineria
+from vinoteca import Vinoteca
 
-from .entidadVineria import EntidadVineria
+#from .entidadVineria import EntidadVineria
 
 
 class Cepa(EntidadVineria):
@@ -14,16 +15,22 @@ class Cepa(EntidadVineria):
 
 ###consultas
     def obtenerVinos(self):  ####NO SE SI FUNCIONA O ESTA BIEN. V
-        from vinoteca import Vinoteca
-        vinos = Vinoteca.obtenerVinos()
-        vinosCepa = []
+        # from vinoteca import Vinoteca
+        # vinos = Vinoteca.obtenerVinos()
+        # vinosCepa = []
         
+        # for vino in vinos:
+        #     for cepa in vino.obtenerCepas():
+        #         if cepa.obtenerId() == self.obtenerId():
+        #             vinosCepa.append(vino)
+        #             break
+        # return vinosCepa
+        vinos_con_cepa = []
+        vinos = Vinoteca.obtenerVinos()
         for vino in vinos:
-            for cepa in vino.obtenerCepas():
-                if cepa.obtenerId() == self.obtenerId():
-                    vinosCepa.append(vino)
-                    break
-        return vinosCepa
+            if self in vino.obtenerCepas():
+                vinos_con_cepa.append(vino)
+        return vinos_con_cepa
 
     def convertirAJSON(self):
         return {
