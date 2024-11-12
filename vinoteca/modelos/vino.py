@@ -1,6 +1,7 @@
 import json
 from modelos.entidadVineria import EntidadVineria
-from vinoteca import Vinoteca
+
+#from vinoteca import Vinoteca
 
 class Vino(EntidadVineria):
     
