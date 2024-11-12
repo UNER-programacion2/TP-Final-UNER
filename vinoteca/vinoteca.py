@@ -1,144 +1,86 @@
-# vinoteca.py
+# librerias
+import os
 import json
+
+# modelos
 from modelos.bodega import Bodega
 from modelos.cepa import Cepa
 from modelos.vino import Vino
 
 class Vinoteca:
-    __archivoDeDatos = "vinoteca.json"
-    bodegas = []
-    cepas = []
-    vinos = []
 
-    @classmethod
-    def inicializar(cls):
-        datos = cls.__parsearArchivoDeDatos()
-        cls.__convertirJsonAListas(datos)
+    __archivoDeDatos = 'vinoteca.json'
+    __bodegas = []
+    __cepas = []
+    __vinos = []
 
-    @classmethod
-    def obtenerBodegas(cls, orden=None, reverso="no"):
-        if orden == "nombre":
-            return cls.bodegas[::-1] if reverso == "si" else cls.bodegas
-        elif orden == "vinos":
-            return sorted(cls.bodegas, key=lambda b: len(b.obtenerVinos()), reverse=(reverso == "si"))
-        return cls.bodegas
+    def inicializar():
+        datos = Vinoteca.__parsearArchivoDeDatos()
+        Vinoteca.__convertirJsonAListas(datos)
 
-    @classmethod
-    def obtenerCepas(cls, orden=None, reverso="no"):
-        if orden == "nombre":
-            return sorted(cls.cepas, key=lambda c: c.obtenerNombre(), reverse=(reverso == "si"))
-        return cls.cepas
+    def obtenerBodegas(orden=None, reverso=False):
+        if isinstance(orden, str):
+            if orden == "nombre":
+                pass  # completar    
+            elif orden == "vinos":
+                pass  # completar
+        pass  # completar
 
-    @classmethod
-    def obtenerVinos(cls, anio=None, orden=None, reverso="no"):
-        vinos_filtrados = [v for v in cls.vinos if anio in v.obtenerPartidas()] if anio else cls.vinos
-        if orden == "nombre":
-            vinos_filtrados.sort(key=lambda v: v.obtenerNombre(), reverse=(reverso == "si"))
-        elif orden == "bodega":
-            vinos_filtrados.sort(key=lambda v: v.obtenerBodega().obtenerNombre(), reverse=(reverso == "si"))
-        return vinos_filtrados
 
-    @classmethod
-    def buscarBodega(cls, id):
-        for b in cls.bodegas:
-            if b.obtenerId() == id:
-                return b
+
+    def obtenerCepas(orden=None, reverso=False):
+        if isinstance(orden, str):
+            if orden == "nombre":
+                pass  # completar
+        pass  # completar
+
+    def obtenerVinos(anio=None, orden=None, reverso=False):
+        if isinstance(anio, int):
+            pass  # completar
+        if isinstance(orden, str):
+            if orden == "nombre":
+                pass  # completar
+            elif orden == "bodega":
+                pass  # completar
+            elif orden == "cepas":
+                pass  # completar
+        pass  # completar
+
+    def buscarBodega(id: int) -> Bodega: 
+        for bodega in Vinoteca.__bodegas:
+            if bodega.ObtenerId() == id:
+                return bodega          
+        return None    
+          
+
+    def buscarCepa(id: str) -> Cepa:  
+        for cepa in Vinoteca.__cepas:
+            if cepa.obtenerId() == id:
+                return cepa
         return None
+      
 
-    @classmethod
-    def buscarCepa(cls, id):
-        for c in cls.cepas:
-            if c.obtenerId() == id:
-                return c
+    def buscarVino(id) -> Vino:
+        for vino in Vinoteca.__vinos:
+            if vino.obtenerId() == id:
+                return vino
         return None
+    
+    
+#LOAD: crea y retorna un diccionario nuevo de Python con 
+# los pares clave-valor del archivo JSON.
+    def __parsearArchivoDeDatos():
+        with open(Vinoteca. __archivoDeDatos, 'r') as archivo: #Abrir json en modo lectura
+            arch_json = json.load(archivo) #leer archivo json y crea diccionario
+        return arch_json
 
-    @classmethod
-    def buscarVino(cls, id):
-        for v in cls.vinos:
-            if v.obtenerId() == id:
-                return v
-        return None
+    def __convertirJsonAListas(lista):
+        for bodega in lista["bodegas"]:
+            Vinoteca.__bodegas.append(Bodega(bodega[id]))
 
-    @classmethod
-    def __parsearArchivoDeDatos(cls):
-        with open(cls.__archivoDeDatos, 'r') as archivo:
-            return json.load(archivo)
+        for cepas in lista["cepas"]:
+            Vinoteca.__cepas.append(Cepa(cepas[id]))
 
-    @classmethod
-    def __convertirJsonAListas(cls, datos):
-        cls.bodegas = [Bodega(b["id"], b["nombre"]) for b in datos["bodegas"]]
-        cls.cepas = [Cepa(c["id"], c["nombre"]) for c in datos["cepas"]]
-        cls.vinos = [Vino(v["id"], v["nombre"], v["bodega"], v["cepas"], v["partidas"]) for v in datos["vinos"]]
+        for vinos in lista["vinos"]:
+            Vinoteca.__vinos.append(Vino(vinos[id]))
 
-
-
-
-
-# import json
-# from modelos.bodega import Bodega
-# from modelos.cepa import Cepa
-# from modelos.vino import Vino
-
-# class Vinoteca:
-#     __archivoDeDatos = "vinoteca.json"
-#     __bodegas = []
-#     __cepas = []
-#     __vinos = []
-
-#     @classmethod
-#     def inicializar(cls):
-#         datos = cls.__parsearArchivoDeDatos()
-        
-#         # Crear objetos y añadirlos a las listas de bodegas, cepas, y vinos
-#         cls.__bodegas = []
-#         for bodega_data in datos["bodegas"]:
-#             cls.__bodegas.append(Bodega(bodega_data["id"], bodega_data["nombre"]))
-
-#         cls.__cepas = []
-#         for cepa_data in datos["cepas"]:
-#             cls.__cepas.append(Cepa(cepa_data["id"], cepa_data["nombre"]))
-
-#         cls.__vinos = []
-#         for vino_data in datos["vinos"]:
-#             cls.__vinos.append(Vino(
-#                 vino_data["id"], vino_data["nombre"], vino_data["bodega"],
-#                 vino_data["cepas"], vino_data["partidas"]
-#             ))
-
-#     @classmethod
-#     def obtenerBodegas(cls):
-#         return cls.__bodegas
-
-#     @classmethod
-#     def obtenerCepas(cls):
-#         return cls.__cepas
-
-#     @classmethod
-#     def obtenerVinos(cls):
-#         return cls.__vinos
-
-#     @classmethod
-#     def buscarBodega(cls, id):
-#         for bodega in cls.__bodegas:
-#             if bodega.obtenerId() == id:
-#                 return bodega
-#         return None
-
-#     @classmethod
-#     def buscarCepa(cls, id):
-#         for cepa in cls.__cepas:
-#             if cepa.obtenerId() == id:
-#                 return cepa
-#         return None
-
-#     @classmethod
-#     def buscarVino(cls, id):
-#         for vino in cls.__vinos:
-#             if vino.obtenerId() == id:
-#                 return vino
-#         return None
-
-#     @classmethod
-#     def __parsearArchivoDeDatos(cls):
-#         with open(cls.__archivoDeDatos, 'r') as archivo:
-#             return json.load(archivo)

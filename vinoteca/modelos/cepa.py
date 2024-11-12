@@ -1,9 +1,6 @@
 import json
 from modelos.entidadVineria import EntidadVineria
-from vinoteca import Vinoteca
-
-#from .entidadVineria import EntidadVineria
-
+#from vinoteca import Vinoteca
 
 class Cepa(EntidadVineria):
 
@@ -14,8 +11,8 @@ class Cepa(EntidadVineria):
         return json.dumps({"nombre": self.obtenerNombre()})
 
 ###consultas
-    def obtenerVinos(self):  ####NO SE SI FUNCIONA O ESTA BIEN. V
-        # from vinoteca import Vinoteca
+    def obtenerVinos(self):  
+        from vinoteca import Vinoteca
         # vinos = Vinoteca.obtenerVinos()
         # vinosCepa = []
         
@@ -32,6 +29,7 @@ class Cepa(EntidadVineria):
                 vinos_con_cepa.append(vino)
         return vinos_con_cepa
 
+    
     def convertirAJSON(self):
         return {
             "id": self.obtenerId(),
@@ -56,5 +54,4 @@ class Cepa(EntidadVineria):
             vinos,
         )
         return list(vinosMapa)
-
 
