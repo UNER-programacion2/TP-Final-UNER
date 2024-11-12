@@ -2,13 +2,6 @@ import json
 from modelos.entidadVineria import EntidadVineria 
 #from vinoteca import Vinoteca
 
-#b. La consulta obtenerVinos debe hacer uso del servicio obtenerVinos de
- #la clase Vinoteca para recuperar todos los vinos contenidos en el archivo
- #json. Sobre dicha lista se debe iterar hasta encontrar los vinos que
- #pertenecen a la bodega en cuestión.
-#c. La consulta obtenerCepas debe seguir la misma impronta que el punto
- #anterior para intentar encontrar aquellos vinos que pertenecen a la
- #bodega, recuperando únicamente las cepas en los que se ofrecen estos
 
 class Bodega(EntidadVineria):
     
@@ -22,14 +15,10 @@ class Bodega(EntidadVineria):
         vinosDeLaBodega = []
         vinos = Vinoteca.obtenerVinos()
         for vino in vinos:
-            if vino.bodega._id == self._id:
+            if vino.bodega.id == self._id:
                 vinosDeLaBodega.append(vino)
         return vinosDeLaBodega 
     
-    #obtenerCepas(): Cepa[]    FALTA ACÁ!!
-        #La consulta obtenerCepas debe seguir la misma impronta que el punto
-        #anterior para intentar encontrar aquellos vinos que pertenecen a la
-        #bodega, recuperando únicamente las cepas en los que se ofrecen estos
 
     def obtenerCepas(self):
         vinosDeLaBodega = self.obtenerVinos()
@@ -48,7 +37,6 @@ class Bodega(EntidadVineria):
     #   for vino in vinosBodega:
     #     cepasDeLaBodega.add(vino.cepa)
     #   return list(cepasDeLaBodega)
-    
     
     
     def __repr__(self):

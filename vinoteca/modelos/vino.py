@@ -39,6 +39,9 @@ class Vino(EntidadVineria):
 
     def obtenerPartidas(self):
         return self._partidas
+    
+######################################################################
+######Esto ya estaba en el código original
 
     def __repr__(self):
         return json.dumps({"nombre": self.obtenerNombre()})
