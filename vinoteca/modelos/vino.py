@@ -1,35 +1,33 @@
 import json
 from modelos.entidadVineria import EntidadVineria
 
-#from vinoteca import Vinoteca
-
 class Vino(EntidadVineria):
-    
+        
     def __init__(self,id, nombre, bodega: str, cepas: list[str], partidas: list[int]):
-        super().__init__(id,nombre)
-        self.__bodega = bodega
-        self.__cepas = cepas
-        self.__partidas = partidas
-    
+            super().__init__(id,nombre)
+            self._bodega = bodega
+            self._cepas = cepas
+            self._partidas = partidas
+        
     def establecerBodega(self):
-        self.__bodega
+        self._bodega
     
     def establecerCepas(self):
-        self.__cepas
+        self._cepas
 
     def establecerPartida(self):
-        self.__partidas 
+        self._partidas 
 
     #<<CONSULTAS>>
     def obtenerBodega(self):
         from vinoteca import Vinoteca
-        bodega = Vinoteca.buscarBodega(self.__bodega)
+        bodega = Vinoteca.buscarBodega(self._bodega)
         return bodega
     
     def obtenerCepas(self):
         from vinoteca import Vinoteca
         cepas_objetos=[]
-        for nom_cepa in self.__cepas:
+        for nom_cepa in self._cepas:
             cepa = Vinoteca.buscarCepa(nom_cepa)
             if cepa:
                 cepas_objetos.append(cepa)
@@ -40,6 +38,9 @@ class Vino(EntidadVineria):
     def obtenerPartidas(self):
         return self._partidas
 
+
+######################################################################
+######Esto ya estaba en el código original
     def __repr__(self):
         return json.dumps({"nombre": self.obtenerNombre()})
 
@@ -65,5 +66,4 @@ class Vino(EntidadVineria):
         cepas = self.obtenerCepas()
         cepasMapa = map(lambda a: a.obtenerNombre(), cepas)
         return list(cepasMapa)
-        
-    
+

@@ -1,36 +1,28 @@
 import json
 from modelos.entidadVineria import EntidadVineria
-from vinoteca import Vinoteca
-
-#from .entidadVineria import EntidadVineria
-
+#from vinoteca import Vinoteca
 
 class Cepa(EntidadVineria):
 
+    # hereda de entidadVineria
     def __init__(self, id, nombre):
         super().__init__(id, nombre)
 
-    def __repr__(self):
-        return json.dumps({"nombre": self.obtenerNombre()})
+    ### Consultas
+    def obtenerVinos(self):  
+        from vinoteca import Vinoteca  # Importación retrasada para evitar el ciclo de dependencias
 
-###consultas
-    def obtenerVinos(self):  ####NO SE SI FUNCIONA O ESTA BIEN. V
-        # from vinoteca import Vinoteca
-        # vinos = Vinoteca.obtenerVinos()
-        # vinosCepa = []
-        
-        # for vino in vinos:
-        #     for cepa in vino.obtenerCepas():
-        #         if cepa.obtenerId() == self.obtenerId():
-        #             vinosCepa.append(vino)
-        #             break
-        # return vinosCepa
         vinos_con_cepa = []
         vinos = Vinoteca.obtenerVinos()
         for vino in vinos:
             if self in vino.obtenerCepas():
                 vinos_con_cepa.append(vino)
         return vinos_con_cepa
+
+######################################################################
+######Esto ya estaba en el código original
+    def __repr__(self):
+        return json.dumps({"nombre": self.obtenerNombre()})
 
     def convertirAJSON(self):
         return {
@@ -56,5 +48,3 @@ class Cepa(EntidadVineria):
             vinos,
         )
         return list(vinosMapa)
-
-
