@@ -22,18 +22,20 @@ class Vino(EntidadVineria):
 
     #<<CONSULTAS>>
     def obtenerBodega(self):
+        from vinoteca import Vinoteca
         bodega = Vinoteca.buscarBodega(self.__bodega)
         return bodega
     
     def obtenerCepas(self):
-     cepas_objetos=[]
-     for nom_cepa in self.__cepas:
-        cepa = Vinoteca.buscarCepa(nom_cepa)
-        if cepa:
-          cepas_objetos.append(cepa)
-        else:
-          print(f"cepa no encontrada: {nom_cepa} ")
-     return cepas_objetos
+        from vinoteca import Vinoteca
+        cepas_objetos=[]
+        for nom_cepa in self.__cepas:
+            cepa = Vinoteca.buscarCepa(nom_cepa)
+            if cepa:
+                cepas_objetos.append(cepa)
+            else:
+                print(f"cepa no encontrada: {nom_cepa} ")
+        return cepas_objetos
 
     def obtenerPartidas(self):
         return self._partidas
