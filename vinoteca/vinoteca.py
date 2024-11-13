@@ -8,79 +8,101 @@ from modelos.cepa import Cepa
 from modelos.vino import Vino
 
 class Vinoteca:
-
-    __archivoDeDatos = 'vinoteca.json'
+    __archivoDeDatos = './vinoteca.json'
     __bodegas = []
     __cepas = []
     __vinos = []
 
-    def inicializar():
-        datos = Vinoteca.__parsearArchivoDeDatos()
-        Vinoteca.__convertirJsonAListas(datos)
+    @classmethod
+    def inicializar(cls):
+        datos = cls.__parsearArchivoDeDatos()
+        cls.__convertirJsonAListas(datos)
 
-    def obtenerBodegas(orden=None, reverso=False):
-        if isinstance(orden, str):
-            if orden == "nombre":
-                pass  # completar    
-            elif orden == "vinos":
-                pass  # completar
-        pass  # completar
+###################################################################################
+#modificar esto################################
+    @classmethod
+    def obtenerBodegas(cls, orden=None, reverso=False):
+        if orden is not None:
+            return sorted(cls.__bodegas, key=lambda b: getattr(b, orden), reverse=reverso)
+        return cls.__bodegas
 
+    @classmethod
+    def obtenerCepas(cls, orden=None, reverso=False):
+        if orden is not None:
+            return sorted(cls.__cepas, key=lambda c: getattr(c, orden), reverse=reverso)
+        return cls.__cepas
 
+    @classmethod
+    def obtenerVinos(cls, anio=None, orden=None, reverso=False):
+        vinos = cls.__vinos
+        if anio is not None:
+            vinos = [vino for vino in vinos if vino.anio == anio]
+        if orden is not None:
+            vinos = sorted(vinos, key=lambda v: getattr(v, orden), reverse=reverso)
+        return vinos
+########################################################################################
+    @classmethod
+    def buscarBodega(cls, id):
+        for bodega in cls.__bodegas:
+            if bodega.obtenerId() == id:
+                return bodega
+        return None
 
-    def obtenerCepas(orden=None, reverso=False):
-        if isinstance(orden, str):
-            if orden == "nombre":
-                pass  # completar
-        pass  # completar
-
-    def obtenerVinos(anio=None, orden=None, reverso=False):
-        if isinstance(anio, int):
-            pass  # completar
-        if isinstance(orden, str):
-            if orden == "nombre":
-                pass  # completar
-            elif orden == "bodega":
-                pass  # completar
-            elif orden == "cepas":
-                pass  # completar
-        pass  # completar
-
-    def buscarBodega(id: int) -> Bodega: 
-        for bodega in Vinoteca.__bodegas:
-            if bodega.ObtenerId() == id:
-                return bodega          
-        return None    
-          
-
-    def buscarCepa(id: str) -> Cepa:  
-        for cepa in Vinoteca.__cepas:
+    @classmethod
+    def buscarCepa(cls, id):
+        for cepa in cls.__cepas:
             if cepa.obtenerId() == id:
                 return cepa
         return None
-      
 
-    def buscarVino(id) -> Vino:
-        for vino in Vinoteca.__vinos:
+    @classmethod
+    def buscarVino(cls, id):
+        for vino in cls.__vinos:
             if vino.obtenerId() == id:
                 return vino
         return None
-    
-    
-#LOAD: crea y retorna un diccionario nuevo de Python con 
-# los pares clave-valor del archivo JSON.
-    def __parsearArchivoDeDatos():
-        with open(Vinoteca. __archivoDeDatos, 'r') as archivo: #Abrir json en modo lectura
-            arch_json = json.load(archivo) #leer archivo json y crea diccionario
-        return arch_json
 
-    def __convertirJsonAListas(lista):
+    # @classmethod
+    # def __parsearArchivoDeDatos(cls):
+    #     with open(cls.__archivoDeDatos, 'r') as archivo:
+    #         return json.load(archivo)
+    @classmethod
+    def __parsearArchivoDeDatos(cls):
+        ruta_archivo = os.path.join(os.path.dirname(__file__), cls.__archivoDeDatos)
+        with open(ruta_archivo, 'r') as archivo:
+            return json.load(archivo)
+
+    # @classmethod
+    # def __convertirJsonAListas(cls, lista):
+    #     for bodega in lista["bodegas"]:
+    #         Vinoteca.__bodegas.append(Bodega(bodega[id]))
+
+    #     for cepas in lista["cepas"]:
+    #         Vinoteca.__cepas.append(Cepa(cepas[id]))
+
+    #     for vinos in lista["vinos"]:
+    #         Vinoteca.__vinos.append(Vino(vinos[id]))
+    @classmethod
+    def __convertirJsonAListas(cls, lista):
+        cls.__bodegas = []   
+        cls.__cepas = []
+        cls.__vinos = []
+
         for bodega in lista["bodegas"]:
-            Vinoteca.__bodegas.append(Bodega(bodega[id]))
-
+            if 'id' in bodega:
+                cls.__bodegas.append(Bodega(bodega['id']))
+            else:
+                print("Error: 'id' key is missing in bodega:", bodega)
+        
+     
         for cepas in lista["cepas"]:
-            Vinoteca.__cepas.append(Cepa(cepas[id]))
+            if 'id' in cepas:
+                cls.__cepas.append(Cepa(cepas['id']))
+            else:
+                print("Error: 'id' key is missing in bodega:", cepas)
 
         for vinos in lista["vinos"]:
-            Vinoteca.__vinos.append(Vino(vinos[id]))
-
+            if 'id' in vinos:
+                cls.__vinos.append(Vino(vinos['id']))
+            else:
+                print("Error: 'id' key is missing in bodega:", vinos)

@@ -5,12 +5,7 @@ from flask_restful import Api
 from vinoteca import Vinoteca
 
 # API
-from recursos import RecursoBodega
-from recursos import RecursoBodegas
-from recursos import RecursoCepa
-from recursos import RecursoCepas
-from recursos import RecursoVino
-from recursos import RecursoVinos
+from recursos import *
 
 if __name__ == "__main__":
     Vinoteca.inicializar()
@@ -26,4 +21,3 @@ if __name__ == "__main__":
     api.add_resource(RecursoVinos, '/api/vinos')
 
     app.run(debug=True)
-

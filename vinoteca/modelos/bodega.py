@@ -1,12 +1,11 @@
 import json
-from modelos.entidadVineria import EntidadVineria 
-#from vinoteca import Vinoteca
-
+from modelos.entidadVineria import EntidadVineria
 
 class Bodega(EntidadVineria):
-    
-    def __init__(self, id, nombre):
-        super().__init__(self, id, nombre)
+
+    #hereda de entidadVineria
+    def __init__( id, nombre): 
+        super().__init__( id, nombre)
 
     #<<Consultas>>           Plantear el uso de GET Y SET
     def obternerVinos(self):
@@ -15,11 +14,10 @@ class Bodega(EntidadVineria):
         vinosDeLaBodega = []
         vinos = Vinoteca.obtenerVinos()
         for vino in vinos:
-            if vino.bodega.id == self._id:
+            if vino.bodega._id == self._id:
                 vinosDeLaBodega.append(vino)
-        return vinosDeLaBodega 
+        return vinosDeLaBodega
     
-
     def obtenerCepas(self):
         vinosDeLaBodega = self.obtenerVinos()
         cepas = []
@@ -30,15 +28,10 @@ class Bodega(EntidadVineria):
                     cepas.append(cepa)
 
         return cepas
-       
-    # def obtenerCepas(self):
-    #   vinosBodega = self.obtenerVinos()
-    #   cepasDeLaBodega = set()
-    #   for vino in vinosBodega:
-    #     cepasDeLaBodega.add(vino.cepa)
-    #   return list(cepasDeLaBodega)
-    
-    
+
+######################################################################
+######Esto ya estaba en el código original
+
     def __repr__(self):
         return json.dumps(self.convertirAJSON())
 
