@@ -8,7 +8,7 @@ class Bodega(EntidadVineria):
         super().__init__( id, nombre)
 
     #<<Consultas>>           Plantear el uso de GET Y SET
-    def obternerVinos(self):
+    def obtenerVinos(self):
         from vinoteca import Vinoteca 
         
         vinosDeLaBodega = []
