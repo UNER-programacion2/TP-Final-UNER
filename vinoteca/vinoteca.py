@@ -17,6 +17,25 @@ class Vinoteca:
     def inicializar(cls):
         datos = cls.__parsearArchivoDeDatos()
         cls.__convertirJsonAListas(datos)
+        
+    # Consultas
+    def obtenerBodegas(self, orden=None, reverso=False):
+        if orden is not None:
+            return sorted(self.bodegas, key=lambda b: getattr(b, orden), reverse=reverso)
+        return self.bodegas
+    
+    def obtenerCepas(self, orden=None, reverso=False):
+        if orden is not None:
+            return sorted(self.cepas, key=lambda c: getattr(c, orden), reverse=reverso)
+        return self.cepas
+    
+    def obtenerVinos(self, anio=None, orden=None, reverso=False):
+        vinos_filtrados = self.vinos
+        if anio is not None:
+            vinos_filtrados = [vino for vino in self.vinos if any(partida['anio'] == anio for partida in vino.partidas)]
+        if orden is not None:
+            return sorted(vinos_filtrados, key=lambda v: getattr(v, orden), reverse=reverso)
+        return vinos_filtrados
 
 ###################################################################################
 #modificar esto################################
