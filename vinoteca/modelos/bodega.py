@@ -1,18 +1,19 @@
 import json
 from modelos.entidadVineria import EntidadVineria
+#from vinoteca import Vinoteca
+import vinoteca 
 
 class Bodega(EntidadVineria):
 
     #hereda de entidadVineria
-    def __init__( id, nombre): 
-        super().__init__( id, nombre)
+    def __init__(self, id, nombre): 
+        super().__init__(id, nombre)
 
-    #<<Consultas>>           Plantear el uso de GET Y SET
+    #<<Consultas>>          
     def obtenerVinos(self):
-        from vinoteca import Vinoteca 
         
         vinosDeLaBodega = []
-        vinos = Vinoteca.obtenerVinos()
+        vinos = vinoteca.Vinoteca.obtenerVinos()
         for vino in vinos:
             if vino.bodega._id == self._id:
                 vinosDeLaBodega.append(vino)

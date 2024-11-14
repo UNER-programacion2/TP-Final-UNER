@@ -18,6 +18,7 @@ class Cepa(EntidadVineria):
                 vinos_con_cepa.append(vino)
         return vinos_con_cepa
 
+
 ######################################################################
 ######Esto ya estaba en el código original
     def __repr__(self):
@@ -47,3 +48,4 @@ class Cepa(EntidadVineria):
             vinos,
         )
         return list(vinosMapa)
+    
