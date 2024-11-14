@@ -15,10 +15,22 @@ class Bodega(EntidadVineria):
         vinosDeLaBodega = []
         vinos = vinoteca.Vinoteca.obtenerVinos()
         for vino in vinos:
-            if vino.bodega._id == self._id:
+            if vino._bodega._id == self._id:
                 vinosDeLaBodega.append(vino)
         return vinosDeLaBodega
+        
+    def obtenerIdsVinos(self):
+            idsVinosDeLaBodega = []
+            vinos = vinoteca.Vinoteca.obtenerVinos()
     
+            for vino in vinos:
+             print(f"Revisando vino ID: {vino._id}, Bodega ID: {vino._bodega._id}")  # Debugging
+            if vino._bodega and vino._bodega._id == self._id:
+                idsVinosDeLaBodega.append(vino._id)
+    
+            print("IDs de vinos de la bodega:", idsVinosDeLaBodega)  # Debugging
+            return idsVinosDeLaBodega
+            
     def obtenerCepas(self):
         vinosDeLaBodega = self.obtenerVinos()
         cepas = []

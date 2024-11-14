@@ -50,7 +50,7 @@ class Vino(EntidadVineria):
             "nombre": self.obtenerNombre(),
             "bodega": self.obtenerBodega().obtenerNombre(),
             "cepas": self.__mapearCepas(),
-            "partidas": self.__partidas,
+            "partidas": self._partidas,
         }
 
     def convertirAJSONFull(self):
@@ -59,7 +59,7 @@ class Vino(EntidadVineria):
             "nombre": self.obtenerNombre(),
             "bodega": self.obtenerBodega().obtenerNombre(),
             "cepas": self.__mapearCepas(),
-            "partidas": self.__partidas,
+            "partidas": self._partidas,
         }
 
     def __mapearCepas(self):

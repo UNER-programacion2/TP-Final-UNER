@@ -207,3 +207,27 @@
         #         }, ensure_ascii=False))
         # else:
         #     print(f"Cepa con id {id} no encontrada.")
+
+
+
+
+
+
+    # @classmethod
+    # def obtenerCepas(cls, id:str, orden=None, reverso=False):
+    #     cepa = cls.buscarCepa(id)
+    #     cepa = cls.buscarCepa(id)
+    #     if cepa:
+    #         print(json.dumps({
+    #             "id": cepa.obtenerId(),
+    #             "nombre": cepa.obtenerNombre(),
+    #             "vinos": [f"{vino.obtenerNombre()} ({vino.obtenerBodega().obtenerNombre()})" for vino in cepa.obtenerVinos()]
+    #         }))
+    #     else:
+    #         print(f"Cepa con id {id} no encontrada.")
+    #         return []
+           
+    #     if isinstance(orden, str) and orden == "nombre":
+    #         return sorted(cls.__cepas, key=lambda c: c.obtenerNombre(), reverse=reverso)
+        
+    #     return cls.__cepas
