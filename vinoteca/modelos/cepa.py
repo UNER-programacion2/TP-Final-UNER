@@ -3,11 +3,13 @@ from modelos.entidadVineria import EntidadVineria
 
 class Cepa(EntidadVineria):
 
-    # hereda de entidadVineria
+    ##### hereda de entidadVineria####
+    
     def __init__(self, id, nombre):
         super().__init__(id, nombre)
 
-    ### Consultas
+    ###<<CONSULTAS>>###
+    
     def obtenerVinos(self):  
         from vinoteca import Vinoteca 
 
@@ -20,7 +22,8 @@ class Cepa(EntidadVineria):
 
 
 ######################################################################
-######Esto ya estaba en el código original
+############Esto ya estaba en el código original######################
+    
     def __repr__(self):
         return json.dumps({"nombre": self.obtenerNombre()})
 

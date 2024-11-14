@@ -7,18 +7,21 @@ class EntidadVineria(ABC):
         self._id = id
         self._nombre = nombre
 
-#<<Comandos>>
+###<<COMANDOS>>###
+    
     def establecerNombre(self, nombre: str):
         self._nombre = nombre
 
-#<<Consultas>> 
+###<<CONSULTAS>>### 
+    
     def obtenerId(self):
         return self._id
 
     def obtenerNombre(self):
         return self._nombre
     
-    #@abstractmethod ##consultar si va aca o no
+###c)sobrescribir consulta, comparando dos objetos###
+   
     def __eq__(self, other):
         if not isinstance(other, EntidadVineria):
             return False

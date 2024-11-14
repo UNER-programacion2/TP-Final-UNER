@@ -1,7 +1,8 @@
 # librerias
-import encodings
 import os
 import json
+from flask import Flask
+
 
 # modelos
 from modelos.bodega import Bodega
@@ -16,10 +17,13 @@ class Vinoteca:
     __cepas = []
     __vinos = []
 
-###FUNCIONA CEPA
-#OBTENER BODEGA, CEPA Y VINO#########################################################
-#####################################################################################
+    @classmethod
+    def inicializar(cls):
+            datos = cls.__parsearArchivoDeDatos()
+            cls.__convertirJsonAListas(datos)
 
+#OBTENER BODEGA, CEPA Y VINO#########################################################
+##################################################################################### Ooki
 
     @classmethod
     def obtenerBodegas(cls, orden=None, reverso=False):
@@ -32,7 +36,6 @@ class Vinoteca:
     
     @classmethod
     def obtenerCepas(cls, orden=None, reverso=False):
-
         if isinstance(orden, str) and orden == "nombre":
             return sorted(cls.__cepas, key=lambda c: c.obtenerNombre(), reverse=reverso)
         return cls.__cepas
@@ -41,7 +44,6 @@ class Vinoteca:
     @classmethod
     def obtenerVinos(cls, anio=None, orden=None, reverso=False):
         vinos_f = cls.__vinos
-
         if isinstance(anio, int):
             vinos_f = [vino for vino in cls.__vinos if anio in vino._partidas]
         if isinstance(orden, str):
@@ -50,8 +52,7 @@ class Vinoteca:
             elif orden == "bodega":
                 return sorted(vinos_f, key=lambda v: v.obtenerBodega().obtenerNombre(), reverse=reverso)
             elif orden == "cepas":
-                return sorted(vinos_f, key=lambda v: len(v.obtenerCepas()), reverse=reverso)
-            
+                return sorted(vinos_f, key=lambda v: len(v.obtenerCepas()), reverse=reverso) 
         return vinos_f
 
   
@@ -91,11 +92,9 @@ class Vinoteca:
                 print(f"  - {v.obtenerNombre()}")
             return
         
-
         print(f"No se encontró una cepa, vino o bodega con el id '{id}'.")
  
    
-
 #BUSCAR BODEGA, CEPA Y VINO##########################################################
 #####################################################################################
     @classmethod 
@@ -122,7 +121,7 @@ class Vinoteca:
     @classmethod
     def __parsearArchivoDeDatos(cls):
         ruta_archivo = os.path.join(os.path.dirname(__file__), cls.__archivoDeDatos) #Obtiene el directorio del archivo actual
-        with open(ruta_archivo, 'r') as archivo: #Abre el archivo en modo lectura
+        with open(ruta_archivo, 'r' , encoding='utf-8') as archivo: #Abre el archivo en modo lectura
             return json.load(archivo)
 
     @classmethod
@@ -144,63 +143,5 @@ class Vinoteca:
                 cls.__vinos.append(Vino(vino['id'], vino['nombre'], vino['bodega'], vino['cepas'], vino['partidas']))
 
 
-    @classmethod
-    def inicializar(cls):
-        datos = cls.__parsearArchivoDeDatos()
-        cls.__convertirJsonAListas(datos)
-
-
-#lo que estaba haciendo gabi
     
-    # @classmethod
-    # def cargar_datos(cls):
-    #     try:
-    #         with open('vinoteca.json', 'r', encodings-'utf-8') as file:
-    #             cls.__archivoDeDatos = file.rea()
-    #             print(('datos cargados correctamente'))
-    #     except FileNotFoundError:
-    #         print("El archivo vinoteca.json no se encontro")
-    #     except IOError:
-    #         print("Ocurrio un eror al leer el archivo")
     
-    # @classmethod
-    # def obtener_datos(cls):
-    #     if cls.__archivoDeDatos:
-    #         return json.loads(cls.__archivoDeDatos)
-    #     else:
-    #         print("No se han cargado datos")
-    #         return None
-            
-    # def inicializar(): # Add a self or class parameter
-    #     datos = Vinoteca.__parsearArchivoDeDatos()
-    #     Vinoteca.__convertirJsonAListas(datos)
-        
-
-        
-########################################################################################
-###################################################################################
-
-
-    # def mostrarDatos(cls, id: str):
-    #     cepa = cls.buscarCepa(id)
-    #     vino = cls.buscarVino(id)
-    #     bodega = cls.buscarBodega(id)
-
-    #     if cepa:
-    #         print(json.dumps({
-    #             "id": cepa.obtenerId(),
-    #             "nombre": cepa.obtenerNombre(),
-    #             "vinos": [f"{vino.obtenerNombre()} ({vino.obtenerBodega().obtenerNombre()})" for vino in cepa.obtenerVinos()]
-    #         }))
-
-    #     if vino:
-    #         print(json.dumps({
-    #             "id": vino.obtenerId(),
-    #             "nombre": vino.obtenerNombre(),
-    #             "cepas": [f"{vino.obtenerNombre()} ({vino.obtenerBodega().obtenerNombre()})" for vino in vino.obtenerCepas()],
-    #             "partidas": vino.obtenerPartidas(),
-    #         }))
-        
-    #     else:
-    #         print(f"Cepa con id {id} no encontrada.")
-    #         return [] 

@@ -8,7 +8,9 @@ class Vino(EntidadVineria):
             self._bodega = bodega
             self._cepas = cepas
             self._partidas = partidas
-        
+    
+    ####<<COMANDOS>>###    
+    
     def establecerBodega(self):
         self._bodega
     
@@ -18,7 +20,8 @@ class Vino(EntidadVineria):
     def establecerPartida(self):
         self._partidas 
 
-    #<<CONSULTAS>>
+    ###<<CONSULTAS>>###
+    
     def obtenerBodega(self):
         from vinoteca import Vinoteca
         bodega = Vinoteca.buscarBodega(self._bodega)
@@ -40,7 +43,7 @@ class Vino(EntidadVineria):
 
 
 ######################################################################
-######Esto ya estaba en el código original
+###############Esto ya estaba en el código original###################
     def __repr__(self):
         return json.dumps({"nombre": self.obtenerNombre()})
 
