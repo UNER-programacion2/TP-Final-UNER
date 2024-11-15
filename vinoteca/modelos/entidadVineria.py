@@ -21,7 +21,7 @@ class EntidadVineria(ABC):
         return self._nombre
     
 ###c)sobrescribir consulta, comparando dos objetos###
-   
+   #consultar si va el @abstractmethod acá
     def __eq__(self, other):
         if not isinstance(other, EntidadVineria):
             return False

@@ -16,7 +16,7 @@ class Bodega(EntidadVineria):
         vinosDeLaBodega = []
         vinos = Vinoteca.obtenerVinos()
         for vino in vinos:
-            if vino.obtenerBodega().obtenerId() == self.obtenerId():
+            if vino.obtenerBodega().obtenerId() == self.obtenerId():#preguntar
                 vinosDeLaBodega.append(vino)
         return vinosDeLaBodega
 
@@ -26,7 +26,7 @@ class Bodega(EntidadVineria):
         cepas = []
         
         for vino in vinosDeLaBodega:
-            for cepa in vino.obtenerCepas():  
+            for cepa in vino.obtenerCepas():#preguntar  
                 if cepa not in cepas:  
                     cepas.append(cepa)
 
