@@ -15,7 +15,7 @@ class Bodega(EntidadVineria):
         vinosDeLaBodega = []
         vinos = vinoteca.Vinoteca.obtenerVinos()
         for vino in vinos:
-            if vino._bodega._id == self._id:
+            if vino._bodega == self._id:
                 vinosDeLaBodega.append(vino)
         return vinosDeLaBodega
         
