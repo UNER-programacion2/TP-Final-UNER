@@ -26,9 +26,9 @@ if __name__ == "__main__":
     
 
     
-    @app.route('/api/vinos')
-    def get_vinos():
-        return jsonify(vinos)
+    #@app.route('/api/vinos')
+    #def get_vinos():
+    #   return jsonify(vinos)
 
     app.run(debug=True)
 
