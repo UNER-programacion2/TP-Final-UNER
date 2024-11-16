@@ -1,7 +1,8 @@
 import json
 from modelos.entidadVineria import EntidadVineria
 
-class Vino(EntidadVineria):
+#hereda de entidadVineria#
+class Vino(EntidadVineria): 
         
     def __init__(self,id, nombre, bodega: str, cepas: list[str], partidas: list[int]):
             super().__init__(id,nombre)
@@ -9,8 +10,7 @@ class Vino(EntidadVineria):
             self._cepas = cepas
             self._partidas = partidas
     
-    ####<<COMANDOS>>###    
-    
+#consult#    
     def establecerBodega(self):
         self._bodega
     
@@ -20,8 +20,7 @@ class Vino(EntidadVineria):
     def establecerPartida(self):
         self._partidas 
 
-    ###<<CONSULTAS>>###
-    
+###<<CONSULTAS>>###
     def obtenerBodega(self):
         from vinoteca import Vinoteca
         bodega = Vinoteca.buscarBodega(self._bodega)
@@ -41,9 +40,6 @@ class Vino(EntidadVineria):
     def obtenerPartidas(self):
         return self._partidas
 
-
-######################################################################
-###############Esto ya estaba en el código original###################
     def __repr__(self):
         return json.dumps({"nombre": self.obtenerNombre()})
 

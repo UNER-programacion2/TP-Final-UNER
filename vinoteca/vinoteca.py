@@ -1,8 +1,6 @@
 # librerias
 import os
 import json
-from flask import Flask
-
 
 # modelos
 from modelos.bodega import Bodega
@@ -21,9 +19,6 @@ class Vinoteca:
     def inicializar(cls):
             datos = cls.__parsearArchivoDeDatos()
             cls.__convertirJsonAListas(datos)
-
-#OBTENER BODEGA, CEPA Y VINO#########################################################
-##################################################################################### Ooki
 
     @classmethod
     def obtenerBodegas(cls, orden=None, reverso=False):
@@ -56,8 +51,7 @@ class Vinoteca:
         return vinos_f
 
   
-#MOSTRAR DATOS BODEGA, CEPA Y VINO#########################################################
-#####################################################################################
+#para mostrar los datos de bodega,cepa y vino
 
     def mostrarDatos(cls, id: str):
         cepa = cls.buscarCepa(id)
@@ -95,8 +89,7 @@ class Vinoteca:
         print(f"No se encontró una cepa, vino o bodega con el id '{id}'.")
  
    
-#BUSCAR BODEGA, CEPA Y VINO##########################################################
-#####################################################################################
+#BUSCAR BODEGA, CEPA Y VINO#
     @classmethod 
     def buscarBodega(cls, id: str) : 
         for bodega in cls.__bodegas: 
@@ -120,9 +113,10 @@ class Vinoteca:
     
     @classmethod
     def __parsearArchivoDeDatos(cls):
-        ruta_archivo = os.path.join(os.path.dirname(__file__), cls.__archivoDeDatos) #Obtiene el directorio del archivo actual
-        with open(ruta_archivo, 'r' , encoding='utf-8') as archivo: #Abre el archivo en modo lectura
-            return json.load(archivo)
+        rutaArchivo = os.path.join(os.path.dirname(__file__), cls.__archivoDeDatos) #Obtiene el directorio del archivo actual 
+        #y carga la información en un diccionario
+        with open(rutaArchivo, 'r' , encoding='utf-8') as archivo: #Abre el archivo en modo lectura
+            return json.load(archivo) #retorna el diccionario creado
 
     @classmethod
     def __convertirJsonAListas(cls, lista):

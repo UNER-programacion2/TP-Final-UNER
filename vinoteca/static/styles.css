@@ -27,23 +27,29 @@ header{
     padding: 20px;
     background-attachment: fixed;
     background-color: white;
+    opacity: 80%;
 
 }
 footer{
-    display: flex;
+    background: white;
+    opacity: 80%;
+    display:grid;
     justify-content: center;
     align-items: center;
     padding: 10px;
     margin: auto;
+    font-size: 18px;
 }
+
 .imgfacu{
-    width: 350px;
+    width: 300px;
     height: 200px;
     margin: 10px;
     margin: 0;
     padding: 0; 
-    display: block;
-    background: none;
+    display: flex;
+    align-self:flex-end;
+    justify-content: end;
 }
 body {
     background-size: cover; 
@@ -73,8 +79,6 @@ body {
     justify-content: center;
     flex-wrap: wrap; 
 }
-
-
 
 .btn-primary{
     display: block;

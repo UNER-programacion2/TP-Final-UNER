@@ -1,40 +1,34 @@
 import json
 from modelos.entidadVineria import EntidadVineria
-#import vinoteca
-
+ 
+ #hereda de entidadVineria# 
 class Bodega(EntidadVineria):
 
-    ###Hereda de entidadVineria###
-    
     def __init__(self, id, nombre): 
         super().__init__(id, nombre)
 
-    ###<<CONSULTAS>>###          
+    #consultas#          
     def obtenerVinos(self):
         from vinoteca import Vinoteca
 
-        vinosDeLaBodega = []
+        vinosBodega = []
         vinos = Vinoteca.obtenerVinos()
         for vino in vinos:
             if vino.obtenerBodega().obtenerId() == self.obtenerId():#preguntar
-                vinosDeLaBodega.append(vino)
-        return vinosDeLaBodega
+                vinosBodega.append(vino)
+        return vinosBodega
 
             
     def obtenerCepas(self):
-        vinosDeLaBodega = self.obtenerVinos()
+        vinosBodega = self.obtenerVinos()
         cepas = []
         
-        for vino in vinosDeLaBodega:
+        for vino in vinosBodega:
             for cepa in vino.obtenerCepas():#preguntar  
                 if cepa not in cepas:  
                     cepas.append(cepa)
-
         return cepas
 
-
-######################################################################
-##############Esto ya estaba en el código original####################
 
     def __repr__(self):
         return json.dumps(self.convertirAJSON())
