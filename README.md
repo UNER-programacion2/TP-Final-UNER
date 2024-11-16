@@ -8,3 +8,9 @@ __Integrantes__
 * Cardozo Estrella
 * Peralta Cassutti Noah Nicanor 
 * Sanchez Gabriela María
+
+  ## Tecnologías utilizadas
+
+  * PYTHON
+  * HTML
+  * CSS
