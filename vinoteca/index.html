@@ -16,49 +16,25 @@
         <h2 class="titulos">Programación 2</h2>
         <img src="./static/" alt="">
         
-        <h2>VINOTECA</h2>
     </header>
     <main>
-        
+      <br>
+         <div class="fondo-text"><h2>VINOTECA</h2></div>
         <div class="container">
-            <div class="vinos">
                  <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">VINOS</h5>
                   <p class="card-text">Encontrarás id, nombre, bodega, cepas, partidas de todos los vinos</p>
-                    <a href="#" class="btn-primary">Ir a Vino</a>
+                    <a href="http://localhost:5000/api/vinos" class="btn-primary">Ir a Vino</a>
                         
                 </div>
               </div>
-            </div>
-           <!-- MODAL PARA VINO -->
             
-            <!-- Modal 
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                    ...
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-                </div>
-            </div> -->
-        <!-- ACA TERMINA MODAL PARA VINO -->
             <div class="card" >
                 <div>
                   <h5 class="card-title">CEPAS</h5>
                   <p class="card-text">La cepa es la base del vino y determina sus características organolépticas, como el sabor, el aroma, el color y la textura.</p>
-                  <a href="#" class="btn-primary">Ir a Cepas</a>
+                  <a href="http://localhost:5000/api/cepas" class="btn-primary">Ir a Cepas</a>
                 </div>
               </div>
 
@@ -67,42 +43,113 @@
                   <h5 class="card-title">BODEGAS</h5>
                   <p class="card-text"> La Bodegs es el lugar
                     donde se almacena el vino para su envejecimiento.</p>
-                  <a href="#" class="btn-primary">Ir a Bodegas</a>
+                  <a href="http://localhost:5000/api/bodegas" class="btn-primary">Ir a Bodegas</a>
                 </div>
               </div>
-
                 
             </div>
-        </div>
-    <!-- prueba con jinja2-->
-  <!--  <div>
-        <h1>Bienvenido a la Vinoteca Virtual</h1>
+        
+        <div class="fondo-text"><h2 >PRUEBAS</h2></div>
+        <div class="container">
+          
+               <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">VINO POR ID</h5>
+                      <p class="card-text">Lo que tiene que aparecer:</p>
+                      <p class="card-text">{"id":"4823ad54-0a3a-38b8-adf6- <br>
+                      795512994a4f",<br>
+                      "nombre":"Abducido",<br>
+                      "bodega":"La Iride",<br>
+                      "cepas":["Cabernet Suavignon","Malbec"],<br>
+                      "partidas":[2024,2023,2022]}
+                      </p>
+                      <a href="http://127.0.0.1:5000/api/vinos/4823ad54-0a3a-38b8-adf6-795512994a4f" class="btn-primary">Ir a Vino</a>
+                     
+                    </div>
+            
+                </div>
+          <div class="card" >
+              <div>
+                <h5 class="card-title">CEPA POR ID</h5>
+                <p class="card-text">Lo que tiene que aparecer:</p>
+                <p class="card-text">{"id":"33ccaa9d-4710-9942-002d1b5cb9912e5d",<br>"nombre":"Chardonnay",
+                  "vinos":["Profugo (Casa La Primavera Bodegas y Viñedos)","Oveja Black (Casa La Primavera Bodegas
+                  y Viñedos)",<br>
+                  "Sin Palabra (Casa La Primavera Bodegas y Viñedos)","Sottano (Bodega Sottano)"]}
+                                  </p>
+                <a href="http://127.0.0.1:5000/api/cepas/33ccaa9d-4710-9942-002d-1b5cb9912e5d" class="btn-primary">Ir a Cepas</a>
+              </div>
+            </div>
 
-    <h2>Bodegas</h2>
-    <ul>
-        {% for bodega in bodegas %}
-            <li><a href="{{ url_for('detalle', tipo='bodega', id=bodega.obtenerId()) }}">{{ bodega.obtenerNombre() }}</a></li>
-        {% endfor %}
-    </ul>
+           <div class="card"  >
+              <div>
+                <h5 class="card-title">BODEGA POR ID</h5>
+                <p class="card-text">Lo que tiene que aparecer:</p>
+                <p class="card-text">{"id":"a0900e61-0f72-67ae-7e9d-4218da29b7d8",<br>
+                    "nombre":"Casa La Primavera Bodegas y Viñedos",<br>
+                    "cepas":["Chardonnay","Malbec","Cabernet Suavignon","Merlot"],<br>
+                    "vinos":["Profugo","Oveja Black","Sin Palabra"]}
+                  </p>
+                <a href="http://127.0.0.1:5000/api/bodegas/a0900e61-0f72-67ae-7e9d-4218da29b7d8
+                " class="btn-primary">Ir a Bodegas</a>
+              </div>
+            </div>
+              
+          </div>
 
-    <h2>Cepas</h2>
-    <ul>
-        {% for cepa in cepas %}
-            <li><a href="{{ url_for('detalle', tipo='cepa', id=cepa.obtenerId()) }}">{{ cepa.obtenerNombre() }}</a></li>
-        {% endfor %}
-    </ul>
 
-    <h2>Vinos</h2>
-    <ul>
-        {% for vino in vinos %}
-            <li><a href="{{ url_for('detalle', tipo='vino', id=vino.obtenerId()) }}">{{ vino.obtenerNombre() }}</a></li>
-        {% endfor %}
-    </ul>
-    </div>
-    -->
+      
+        <div class="container">
+          
+               <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">VINO AÑO NORMAL</h5>
+                <p class="card-text">Lo que tiene que aparecer:</p>
+                <p class="card-text">[{"id":"ea3d6c45-e747-2e86-ddf8-0746cc13f21c",<br>
+                  "nombre":"Familia Gascon","bodega":"Escorihuela Gascon",<br>
+                  "cepas":["Cabernet Suavignon","Malbec","Merlot"],<br>
+                  "partidas":[2020,2021]},<br>
+                  {"id":"205db14fc0c0-a286-0a5e-0daa7a3f37f0",<br>
+                  "nombre":"Sin Palabra","bodega":"Casa La
+                  Primavera Bodegas y Viñedos",<br>
+                  "cepas":["Chardonnay","Cabernet
+                  Suavignon","Malbec","Merlot"],<br>
+                  "partidas":[2022,2021,2020]}]
+                  </p>
+                  <a href="http://127.0.0.1:5000/api/vinos?anio=2020&orden=nombre&reverso=no" class="btn-primary">Ir a Vino Año</a>
+                      
+              </div>
+            </div>
+          
+             
+                 <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">VINO AÑO AL REVERSO</h5>
+                      <p class="card-text">Lo que tiene que aparecer:</p>
+                      <p class="card-text">[{"id":"205db14f-c0c0-a286-0a5e-0daa7a3f37f0",<br>
+                        "nombre":"Sin Palabra","bodega":"Casa La Primavera Bodegas y
+                        Viñedos",<br>
+                        "cepas":["Chardonnay","Cabernet Suavignon","Malbec","Merlot"],<br>
+                        "partidas":[2022,2021,2020]},<br>
+                        {"id":"ea3d6c45-e747-2e86-ddf8-0746cc13f21c",<br>
+                        "nombre":"Familia Gascon",<br>
+                        "bodega":"Escorihuela Gascon",
+                        "cepas":["Cabernet Suavignon","Malbec","Merlot"],<br>
+                        "partidas":[2020,2021]}]
+                        </p>
+                        <a href="http://127.0.0.1:5000/api/vinos?anio=2020&orden=nombre&reverso=si" class="btn-primary">Ir a Vino Año Reverso</a>
+                        
+                    </div>
+                  </div>
+               
+          </div>
+            
+      
 
     </main>
+    <footer>
+        <img src="./static/Logo-FCAD-2.png" alt="" class="imgfacu">
+    </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
-
