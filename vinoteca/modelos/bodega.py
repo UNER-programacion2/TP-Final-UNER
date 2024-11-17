@@ -1,7 +1,7 @@
 import json
 from modelos.entidadVineria import EntidadVineria
  
- #hereda de entidadVineria# 
+ #hereda de entidadVineria
 class Bodega(EntidadVineria):
 
     def __init__(self, id, nombre): 
@@ -24,7 +24,7 @@ class Bodega(EntidadVineria):
         cepas = []
         
         for vino in vinosBodega:
-            for cepa in vino.obtenerCepas():#preguntar  
+            for cepa in vino.obtenerCepas():
                 if cepa not in cepas:  
                     cepas.append(cepa)
         return cepas

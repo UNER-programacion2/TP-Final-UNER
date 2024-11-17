@@ -10,7 +10,7 @@ class Vino(EntidadVineria):
             self._cepas = cepas
             self._partidas = partidas
     
-#consult#    
+#comando   
     def establecerBodega(self):
         self._bodega
     
